@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from './Header';
-import FusionSidebar from './FusionSidebar';
-import TaskbarDock from './TaskbarDock';
+import FusionSidebar from './Sidebar';
 import MainDashboard from '../../pages/MainDashboard';
 import PosBilling from '../../pages/PosBilling';
 import JobCardPage from '../../pages/JobCardPage';
@@ -13,7 +12,6 @@ import SettingsPage from '../../pages/SettingsPage';
 
 export default function AdminLayout() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const layoutStyle = 'both';
 
   return (
     <div className="flex h-screen bg-[#070b14] text-slate-100 font-sans overflow-hidden relative">
@@ -23,11 +21,9 @@ export default function AdminLayout() {
         <div className="absolute -bottom-32 left-1/3 w-[650px] h-[650px] rounded-full bg-rose-500/15 blur-[150px]" />
       </div>
 
-      {(layoutStyle === 'sidebar' || layoutStyle === 'both') && (
-        <div className="relative z-20">
-          <FusionSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
-        </div>
-      )}
+      <div className="relative z-20">
+        <FusionSidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>
 
       <div className="flex-1 flex flex-col overflow-hidden pb-16 relative z-10">
         <Header />
@@ -44,11 +40,6 @@ export default function AdminLayout() {
         </main>
       </div>
 
-      {(layoutStyle === 'windows_dock' || layoutStyle === 'both') && (
-        <div className="relative z-30">
-          <TaskbarDock activeTab={activeTab} setActiveTab={setActiveTab} />
-        </div>
-      )}
     </div>
   );
 }
